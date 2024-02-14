@@ -1,0 +1,266 @@
+
+
+.card {
+    width: fit-content;
+    max-width: 75%;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 3% auto
+  
+  }
+  
+  .card>:last-child > table {
+    margin:auto;  
+  }
+  .container{
+    display: flex;
+    flex-wrap:wrap;
+  }
+  h1 {
+    margin-top: 20px;
+    color: #a8d9ec;
+    margin-bottom: 40px;
+  }
+  .app >:first-child{
+    overflow: hidden;
+  }
+  .home {
+    font-size: 3rem;
+  }
+  #root {
+    width: 100%;
+  }
+  td,
+  th {
+    font-size: large;
+    padding: 20px;
+    color: #c0dff1;
+  }
+  
+  .card > div + div {
+    overflow-x: auto;
+    width: 70%;
+    align-self: center;
+  }
+  
+  h3 {
+    margin: 0px;
+    margin-bottom: 20px;
+    color: #7bc4f1;
+  }
+  
+  body {
+    background-color: #0070ad;
+    background-image: url("https://www.transparenttextures.com/patterns/swirl.png");
+  }
+  
+  h1 + input {
+    width: 70%;
+    height: 40px;
+    text-align: left;
+    border-radius: 40px;
+    padding: 10px 25px;
+    background-color: rgba(206, 224, 234, 0.5);
+    border: none;
+    font-size: 1.5rem;
+  }
+  h1+input:focus{
+    outline: none;
+  }
+  
+  input + div {
+    position: relative;
+  }
+  
+  
+  input {
+    background-color: #57aee3;
+    margin: 20px 100px;
+    border-radius: 30px;
+    border: none;
+    padding: 5px;
+    color: #0a1b66;
+  }
+  .app {
+    background-color: "fff";
+  }
+  
+  .hiddenBtn {
+    background: transparent;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 96%;
+  }
+  
+  .admin {
+    display: none;
+  }
+  .edit,
+  .edit > div > button,
+  .edit > div > div > input {
+    font-size: 1.5rem;
+  }
+  
+  h3 + div {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  form {
+    padding: 50px 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+  
+    width: 70%;
+    margin: 5% auto;
+    border-radius: 40px;
+  }
+  
+  form > div > div {
+    display: flex;
+    justify-content: center;
+  }
+  form > div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form > div > div > div {
+    width: 200px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .editbtn{
+    color: white;
+  }
+  
+  form > div > button {
+    display: block;
+    background-color: #5372f1;
+    padding: 7px 20px;
+    border-radius: 30px;
+    transition: 0.3s ease-in;
+    width: 50%;
+    margin: 50px auto;
+    border: none;
+  }
+  
+  form > div > button:hover {
+    background-color: #8198f6;
+    transform: translate(0, -5px);
+  }
+  
+  form > div > button:active {
+    background-color: #c7cde7;
+    color: #0a1b66;
+  }
+  
+  form > div > div > div > label {
+    color: #b6d7f5;
+  }
+  
+  .card > div > div > button,
+  .add {
+    background-color: transparent;
+    border-radius: 50%;
+    border-color: white;
+    color:white;
+  }
+  #nav-action {
+    overflow: hidden;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding:5%;
+    flex-wrap: wrap;
+    gap:10px
+  }
+  
+  .pagination button {
+    width:5%;
+    height:3%;
+    border-radius: 7px;
+    border: 2px solid #61BCEE;
+    cursor: pointer;
+    background-color: #06486B;
+    color:#B2DFF7;
+    padding:1%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  }
+  .pagination button:hover:enabled{
+    background-color:#236488
+  }
+  .pagination .pageBtn{
+    width:10%
+  }
+  button:disabled{
+    background-color: rgba(255,255,255,0.4)
+  }
+  @media all and (min-width: 320px) and (max-width: 520px) {
+    .card {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      width: fit-content;
+    }
+    .card > div + div {
+      width: 100%;
+    }
+    .home{
+      font-size: 2rem;
+      padding-top:8%;
+      margin-right:10%
+    }
+    h1 {
+      color: "red";
+      margin-top: 5px;
+    }
+    h1 + input {
+      height: 30px;
+      margin: 40px;
+      font-size: 1.2rem;
+    }
+    
+    .hiddenBtn {
+      left: 88%;
+    }
+    form {
+      font-size: 1.2rem;
+      width: 80%;
+      margin: 10% auto;
+    }
+    form > div > div > div {
+      width: 120px;
+    }
+    .edit,
+    .edit > div > button,
+    .edit > div > div > input {
+      font-size: 1.2rem;
+    }
+  
+    input {
+      font-size: 1.2rem;
+      margin: 10px;
+      width: 150px;
+    }
+  
+    form > div > button {
+      width: 65%;
+      margin: 20px auto;
+      font-size: 1.2rem;
+    }
+    .pagination button{
+      width:50px
+      
+    }
+    .pagination .pageBtn{
+      width:80px
+    }
+  }
+  

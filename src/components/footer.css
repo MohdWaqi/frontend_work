@@ -1,0 +1,12 @@
+#footer{
+    background-color: #06527C;
+    height:5vh;
+    padding:2%;
+    color:#b6d7f5;
+  }
+
+@media all and (min-width:300px) and (max-width:500px){
+    #footer{
+        padding:5%
+    }
+}

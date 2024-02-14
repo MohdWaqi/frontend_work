@@ -22,7 +22,6 @@ function Home() {
   const allProducts = async () => {
     const response = await getProducts();
     if (response.status === 200) {
-        console.log(response.data)
       setProductData(response.data);
     } else {
       console.log(response);

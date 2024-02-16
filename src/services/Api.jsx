@@ -25,6 +25,6 @@ export const addUserFunction = async (data, header) => {
   return await commonRequest("POST", `${BASE_URL}/add_user`, data, header);
 };
 
-export const checkUser = async (id) => {
-  return await commonRequest("GET", `${BASE_URL}/validate_user/${id}`, "");
+export const checkUser = async (data,header, check) => {
+  return await commonRequest("POST", `${BASE_URL}/validate_user`, data,header, check);
 }

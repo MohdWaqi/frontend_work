@@ -35,8 +35,8 @@
   order: 2;
   display: flex;
 }
-.menu-items > li > a, .cont > a {
- color: #5FBFF4;
+.menu-items img {
+ width:3rem
 }
 .logo {
   order: 1;
@@ -77,5 +77,6 @@
     display: block;
     float: left;
     margin-top: 20px;
+    width:20%
   }
 }

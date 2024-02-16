@@ -12,7 +12,7 @@ function Card(props) {
       <div>
         <img src={props.image} alt="item" />
         <h3>{props.name.toUpperCase()}</h3>
-        {(visibility && isAuth) && (
+        {(visibility && isAuth?.roles?.includes(5150)) && (
           <div>
             <button >
               <NavLink to={`/edit/${props.id}`}>

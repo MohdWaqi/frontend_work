@@ -1,5 +1,7 @@
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import userIcon from "../assets/user.png"
+import homeIcon from "../assets/home.png"
 const Header = () => {
   const navigate = useNavigate();
   const login = () => {
@@ -11,15 +13,13 @@ const Header = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container cont">
-        <a onClick={login} id="getIn" href="">
-          Login
-        </a>
+        <img onClick={login} src={userIcon} id="getIn"/>
         <ul className="menu-items">
           <li>
-            <a onClick={home} href="">Home</a>
+            <img onClick={home} src={homeIcon}/>
           </li>
           <li>
-            <a onClick={login} href="">Login</a>
+            <img onClick={login} src={userIcon}/>
           </li>
         </ul>
         <img

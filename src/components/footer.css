@@ -3,10 +3,13 @@
     height:5vh;
     padding:2%;
     color:#b6d7f5;
+    margin-bottom: 0px
   }
+  
 
 @media all and (min-width:300px) and (max-width:500px){
     #footer{
-        padding:5%
+        padding:5%;
+        margin-bottom:0px
     }
 }

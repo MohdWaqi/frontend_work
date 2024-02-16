@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LogIn />} />
-       <Route element={<PrivateRoute/>}>
+       <Route element={<PrivateRoute allowedRoles={[5150]} />}>
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/add" element={<Add />} />
         </Route> 

@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProducts, removeFunction } from "../../services/Api";
 import { AuthContext } from "../../Context/AuthContextProvider";
+import Footer from "../../components/Footer";
 
 function Home() {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ function Home() {
   }, []);
   function showItem() {
     setVisibility(!visibility);
+    console.log(isAuth.roles)
   }
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
@@ -56,7 +58,7 @@ function Home() {
           onChange={(e) => setQuery(e.target.value.toLowerCase())}
         ></input>
       </div>
-      {(visibility &&  isAuth) && (
+      {(visibility &&  isAuth?.roles?.includes(5150)) && (
         <button onClick={add} className="add">
           <AddIcon fontSize="large"></AddIcon>
         </button>

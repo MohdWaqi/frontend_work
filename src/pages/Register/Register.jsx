@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addUserFunction } from "../../services/Api";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -73,7 +74,7 @@ function Register() {
   const login = () => {
     navigate("/login");
   };
-  const handleSubmit = async (e) => {
+  const handleRegSubmit = async (e) => {
     e.preventDefault();
     const valid1 = USER_REGEX.test(user);
     const valid2 = PWD_REGEX.test(pwd);
@@ -89,17 +90,16 @@ function Register() {
       const config = {
         "Content-Type": "multipart/form-data",
       };
-
-      const response = await addUserFunction(registerData, config);
-      if (response.status === 200) {
+      try {
+        const response = await addUserFunction(registerData, config);
         setSuccess(true);
-      } else {
-        if(response.response){
-          setErrMsg(response.response.data.message);
-        }else{
-          setErrMsg(response.message);
-        }
+        console.log(response)
+        
+      } catch (error) {
+        console.log(error)
+        setErrMsg(error.response.data.message)
       }
+      
     }
   };
   return (
@@ -109,14 +109,14 @@ function Register() {
           <h1>Success!</h1>
           <p>
             Do you want to?{" "}
-            <a onClick={login} href="">
+            <span onClick={login}>
               Login
-            </a>
+            </span>
           </p>
         </div>
       ) : (
         <div className="auth">
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleRegSubmit}>
             <p
               ref={errRef}
               className={errMsg ? "errmsg" : "hide"}
@@ -270,9 +270,9 @@ function Register() {
             <div>
               <p>
                 Already have an account?{" "}
-                <a onClick={login} href="">
+                <span onClick={login} >
                   Login
-                </a>
+                </span>
               </p>
             </div>
           </form>

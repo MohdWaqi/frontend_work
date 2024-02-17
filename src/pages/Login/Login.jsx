@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import { checkUser } from "../../services/Api";
 import { AuthContext } from "../../Context/AuthContextProvider";
-import Footer from "../../components/Footer";
 
 function LogIn() {
   const navigate = useNavigate();

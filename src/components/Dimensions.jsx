@@ -12,7 +12,7 @@ function Dimensions(props) {
       <FormInput
         title={"sell" + props.index}
         label={"Selling Price " + props.heading}
-        status="text"
+        status="number"
         value={props.method}
         field={props.data[`sell${props.index}`]}
       ></FormInput>
@@ -26,7 +26,7 @@ function Dimensions(props) {
       <FormInput
         title={"price" + props.index}
         label={"Price " + props.heading}
-        status="text"
+        status="number"
         value={props.method}
         field={props.data[`price${props.index}`]}
       ></FormInput>

@@ -1,10 +1,10 @@
 import Dimensions from "../../components/Dimensions";
 import AddIcon from "@mui/icons-material/Add";
 import FormInput from "../../components/Field";
-import { addFunction } from "../../services/Api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Add.css";
+import { privateRefresh } from "../../services/ApiCall";
 
 function Add() {
   let fields = [
@@ -252,9 +252,11 @@ function Add() {
       const config = {
         "Content-Type": "multipart/form-data",
       };
-
-      const response = await addFunction(data, config);
-      if (response.status === 200) {
+      try {
+        const response = await privateRefresh.post("/add", data, {
+          headers: config,
+        });
+        console.log(response);
         setAddData({
           ...addData,
           name: "",
@@ -325,7 +327,8 @@ function Add() {
           price15: "",
         });
         navigate("/");
-      } else {
+      } catch (error) {
+        console.log(error); 
         setRequired("Unable to post product, Please try again");
       }
     }

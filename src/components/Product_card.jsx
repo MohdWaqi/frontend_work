@@ -10,7 +10,7 @@ function Card(props) {
   return (
     <div className="card">
       <div>
-        <img src={props.image} alt="item" />
+        <img className="productImage" src={props.image} alt="item" />
         <h3>{props.name.toUpperCase()}</h3>
         {(visibility && isAuth?.roles?.includes(5150)) && (
           <div>
@@ -30,7 +30,7 @@ function Card(props) {
           </div>
         )}
       </div>
-      <div >
+      {(visibility && isAuth?.roles?.includes(5150)) &&<div >
         <table>
           <thead>
             <tr>
@@ -109,7 +109,7 @@ function Card(props) {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div>}
     </div>
   );
 }

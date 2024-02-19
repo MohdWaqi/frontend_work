@@ -2,24 +2,35 @@ import "./header.css";
 import { useNavigate } from "react-router-dom";
 import userIcon from "../assets/user.png"
 import homeIcon from "../assets/home.png"
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContextProvider";
+import logoutIcon from "../assets/logout.png"
+import { logoutUser } from "../services/Api";
 const Header = () => {
   const navigate = useNavigate();
+  const{isAuth, setAuth} = useContext(AuthContext)
   const login = () => {
     navigate("/login");
   };
   const home = () => {
     navigate("/");
   };
+  const logout = async() => {
+    await logoutUser(true)
+    sessionStorage.removeItem('authData');
+    setAuth(null);
+    navigate("/")
+  }
   return (
     <nav className="navbar">
       <div className="navbar-container cont">
-        <img onClick={login} src={userIcon} id="getIn"/>
+        {isAuth?.accessToken?<img onClick={logout} src={logoutIcon} className="getIn"/>:<img onClick={login} src={userIcon} className="getIn"/>}
         <ul className="menu-items">
           <li>
             <img onClick={home} src={homeIcon}/>
           </li>
           <li>
-            <img onClick={login} src={userIcon}/>
+            {isAuth?.accessToken?<img onClick={logout} src={logoutIcon} />:<img onClick={login} src={userIcon}/>}
           </li>
         </ul>
         <img

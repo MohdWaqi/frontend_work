@@ -3,9 +3,9 @@ import "./Home.css";
 import Card from "../../components/Product_card";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProducts, removeFunction } from "../../services/Api";
+import { getProducts } from "../../services/Api";
 import { AuthContext } from "../../Context/AuthContextProvider";
-import Footer from "../../components/Footer";
+import { privateRefresh } from "../../services/ApiCall";
 
 function Home() {
   const navigate = useNavigate();
@@ -32,11 +32,14 @@ function Home() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   const removeSelected = async (id) => {
-    const response = await removeFunction(id);
-    console.log(response);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${isAuth.accessToken}`
+      },
+    };
+    const response = await privateRefresh.delete(`/delete/${id}`, config);
     if (response.status === 200) {
       allProducts();
-      console.log("done removing");
     } else {
       console.log("error");
     }
@@ -46,7 +49,6 @@ function Home() {
   }, []);
   function showItem() {
     setVisibility(!visibility);
-    console.log(isAuth.roles)
   }
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (

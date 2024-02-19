@@ -27,16 +27,13 @@ function LogIn() {
       const response = await checkUser(loginData, true);
       const accessToken = response?.data?.accessToken
       const roles = response?.data?.roles
-      setAuth({...loginData, roles, accessToken})
+      setAuth({ roles, accessToken})
       setLoginData({user:"", pwd:""})
-      console.log(isAuth)
-      console.log(response)
+      navigate("/")
     } catch (error) {
       if(!error?.response){
-        console.log(error)
         setErrMsg("No Server Response")
       }else if (error.response?.status === 400){
-        console.log(loginData)
         setErrMsg("Missing Username or Password")
       }else if(error.response?.status === 404){
         setErrMsg("User not found Please Register first!")
@@ -48,7 +45,6 @@ function LogIn() {
       }
       errRef.current.focus();
     }
-    // console.log(response.data);
   }  
 
   const register = () => {

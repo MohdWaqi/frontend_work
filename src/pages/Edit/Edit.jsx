@@ -1,11 +1,12 @@
 import Dimensions from "../../components/Dimensions";
 import EditIcon from "@mui/icons-material/Edit";
 import FormInput from "../../components/Field";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./Edit.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { editProduct, updateProduct } from "../../services/Api";
-
+import { editProduct } from "../../services/Api";
+import { privateRefresh } from "../../services/ApiCall";
+import { AuthContext } from "../../Context/AuthContextProvider";
 function Edit() {
   const { id } = useParams();
   let fields = [
@@ -26,6 +27,7 @@ function Edit() {
     "15 :",
     "16 :",
   ];
+  const {isAuth} = useContext(AuthContext)
   const [editData, setEditData] = useState({
     name: "",
     image: "",
@@ -99,6 +101,7 @@ function Edit() {
   const setEditValues = (e) => {
     const { name, value } = e.target;
     setEditData({ ...editData, [name]: value });
+    console.log(editData)
   };
 
   useEffect(() => {
@@ -330,18 +333,25 @@ function Edit() {
       data.append("weight15", weight15);
       data.append("price15", price15);
 
-      const config = {
-        "Content-Type": "multipart/form-data",
-      };
-      const response = await updateProduct(id, data, config);
-      if (response.status === 200) {
+      
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${isAuth.accessToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        };
+        const response = await privateRefresh.put(`/edit/${id}`, data, config)
         navigate("/");
+      } catch (error) {
+        console.log(error)
+        setRequired("Unable to edit product, Please try again");
       }
     }
   };
   return (
     <div className="masterEdit">
-      <form className="edit" method="post" onSubmit={submitEdited}>
+      <form className="edit" onSubmit={submitEdited}>
         <h1>
           <EditIcon fontSize="large"></EditIcon> Edit Items
         </h1>

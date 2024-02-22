@@ -36,13 +36,15 @@
   display: flex;
 }
 .menu-items img {
- width:3rem
+ width:3rem;
+ cursor:pointer
 }
 .logo {
   order: 1;
   margin-top:0;
   width: 320px;
   height: 200px;
+  cursor:pointer
 }
 
 .menu-items li {

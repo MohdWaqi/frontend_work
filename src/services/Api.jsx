@@ -1,8 +1,8 @@
 import { commonRequest } from "./ApiCall";
 import { BASE_URL } from "./helper";
 
-export const getProducts = async () => {
-  return await commonRequest("GET", `${BASE_URL}/`, "");
+export const getProducts = async (page, limit, search) => {
+  return await commonRequest("GET", `${BASE_URL}/?page=${page}&limit=${limit}&search=${search}`, "");
 };
 
 export const editProduct = async (id) => {

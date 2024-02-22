@@ -7,6 +7,7 @@ import { getProducts } from "../../services/Api";
 import { AuthContext } from "../../Context/AuthContextProvider";
 import { privateRefresh } from "../../services/ApiCall";
 import { Triangle } from "react-loader-spinner";
+import { debounce } from "lodash";
 
 function Home() {
   const navigate = useNavigate();
@@ -19,24 +20,34 @@ function Home() {
   const [query, setQuery] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [totalPages, setTotalPages] = useState(0)
+  const itemsPerPage = 8;
   const [error, setError] = useState("")
   
+  const debouncedSearch = debounce((searchQuery) => {
+    setQuery(searchQuery);
+  }, 1000);
 
+  const handleSearch = (e) => {
+    const searchQuery = e.target.value;
+    setLoading(true);
+    debouncedSearch(searchQuery);
+  };
+ 
   const allProducts = async () => {
     setLoading(true)
     try {
-      const response = await getProducts();
+      const response = await getProducts(currentPage, itemsPerPage, query);
+      setTotalPages(response.data.totalPages)
+      setProductData(response.data.products);
       setLoading(false)
-      setProductData(response.data);
+      console.log(response.data)
       
     } catch (error) {
       setLoading(false)
       setError(error.message)
     }
   };
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   const removeSelected = async (id) => {
     const config = {
@@ -56,7 +67,7 @@ function Home() {
   };
   useEffect(() => {
     allProducts();
-  }, []);
+  }, [currentPage, query]);
   function showItem() {
     setVisibility(!visibility);
   }
@@ -67,7 +78,7 @@ function Home() {
         <h1 className="home">Products</h1>
         <input
           placeholder="🔍 Search the Item Name"
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          onChange={handleSearch}
         ></input>
       </div>
       {(visibility &&  isAuth?.roles?.includes(5150)) && (
@@ -85,8 +96,7 @@ function Home() {
   />
   </div>:<><button className="hiddenBtn" onClick={showItem}></button>
         {productData
-          .filter((product) => product.name.toLowerCase().includes(query)).slice(indexOfFirstItem, indexOfLastItem)
-          .map((product, i) => (
+          .map((product) => (
             <Card
               key={product._id}
               id={product._id}
@@ -161,15 +171,15 @@ function Home() {
             ></Card>
           ))}</>)}
       </div>
-      {productData.filter((product) => product.name.toLowerCase().includes(query)).length > itemsPerPage && (
+      {productData.length && (
   <div className="pagination">
   <button disabled={currentPage==1} onClick={()=>paginate(currentPage-1)} className="pageBtn">{"<"} Previous</button>
-    {Array.from({ length: Math.ceil(productData.length / itemsPerPage) }).map((_, index) => (
-      <button key={index} onClick={() => paginate(index + 1)}>
+    {Array.from({ length: totalPages }).map((_, index) => (
+      <button key={index} style={{backgroundColor: (index+1)===currentPage&&"blue"}} onClick={() => paginate(index + 1)}>
         {index + 1}
       </button>
     ))}
-    <button onClick={()=>paginate(currentPage+1)} disabled={currentPage==Math.ceil(productData.length / itemsPerPage)} className="pageBtn">Next {">"}</button>
+    <button onClick={()=>paginate(currentPage+1)} disabled={currentPage==totalPages} className="pageBtn">Next {">"}</button>
   </div>
 )}
     </div>

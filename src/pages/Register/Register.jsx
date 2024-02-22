@@ -129,7 +129,7 @@ function Register() {
               <div>
                 <label htmlFor="username">
                   Username{" "}
-                  <span className={validName ? "valid" : "hide"}>
+                  <span className={validName ? "valid" : "hide"} >
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
                   <span className={validName || !user ? "hide" : "invalid"}>

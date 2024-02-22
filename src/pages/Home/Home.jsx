@@ -17,7 +17,7 @@ function Home() {
   const [query, setQuery] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   
 
   const allProducts = async () => {

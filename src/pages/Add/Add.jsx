@@ -1,10 +1,11 @@
 import Dimensions from "../../components/Dimensions";
 import AddIcon from "@mui/icons-material/Add";
 import FormInput from "../../components/Field";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Add.css";
 import { privateRefresh } from "../../services/ApiCall";
+import { AuthContext } from "../../Context/AuthContextProvider";
 
 function Add() {
   let fields = [
@@ -25,6 +26,7 @@ function Add() {
     "15 :",
     "16 :",
   ];
+  const {isAuth} = useContext(AuthContext)
   const [addData, setAddData] = useState({
     name: "",
     image: "",
@@ -250,12 +252,13 @@ function Add() {
       data.append("price15", price15);
 
       const config = {
-        "Content-Type": "multipart/form-data",
+        headers: {
+          Authorization: `Bearer ${isAuth.accessToken}`,
+          "Content-Type": "multipart/form-data",
+        },
       };
       try {
-        const response = await privateRefresh.post("/add", data, {
-          headers: config,
-        });
+        const response = await privateRefresh.post("/add", data, config);
         console.log(response);
         setAddData({
           ...addData,

@@ -21,6 +21,7 @@
   .container{
     display: flex;
     flex-wrap:wrap;
+    margin: auto 5%
   }
   h1 {
     margin-top: 20px;
@@ -264,6 +265,9 @@
     }
     .pagination .pageBtn{
       width:80px
+    }
+    .container {
+      margin:auto
     }
   }
   

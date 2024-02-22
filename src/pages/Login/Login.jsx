@@ -11,7 +11,7 @@ function LogIn() {
 
   const [loginData, setLoginData] = useState({user:"", pwd:""});
   const [errMsg, setErrMsg] = useState("");
-  const {setAuth, isAuth} = useContext(AuthContext)
+  const {setAuth} = useContext(AuthContext)
   
   useEffect( () => {
     userRef.current.focus();

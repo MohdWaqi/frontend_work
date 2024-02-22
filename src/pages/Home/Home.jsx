@@ -40,8 +40,10 @@ function Home() {
       const response = await getProducts(currentPage, itemsPerPage, query);
       setTotalPages(response.data.totalPages)
       setProductData(response.data.products);
+      if(currentPage > totalPages){
+        setCurrentPage(totalPages -1) 
+      }
       setLoading(false)
-      console.log(response.data)
       
     } catch (error) {
       setLoading(false)

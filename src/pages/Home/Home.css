@@ -21,7 +21,8 @@
   .container{
     display: flex;
     flex-wrap:wrap;
-    margin: auto 5%
+    margin: auto 5%;
+    min-height: 57vh
   }
   h1 {
     margin-top: 20px;
@@ -267,7 +268,7 @@
       width:80px
     }
     .container {
-      margin:auto
+      min-height:61vh
     }
   }
   

@@ -6,26 +6,33 @@ import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../services/Api";
 import { AuthContext } from "../../Context/AuthContextProvider";
 import { privateRefresh } from "../../services/ApiCall";
+import { Triangle } from "react-loader-spinner";
 
 function Home() {
   const navigate = useNavigate();
   const add = () => {
     navigate("/add");
   };
+  const [loading, setLoading] = useState(false)
   const [productData, setProductData] = useState([]);
   const {isAuth} = useContext(AuthContext)
   const [query, setQuery] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [error, setError] = useState("")
   
 
   const allProducts = async () => {
-    const response = await getProducts();
-    if (response.status === 200) {
+    setLoading(true)
+    try {
+      const response = await getProducts();
+      setLoading(false)
       setProductData(response.data);
-    } else {
-      console.log(response);
+      
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
     }
   };
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -37,12 +44,15 @@ function Home() {
         Authorization: `Bearer ${isAuth.accessToken}`
       },
     };
-    const response = await privateRefresh.delete(`/delete/${id}`, config);
-    if (response.status === 200) {
+    try {
+      const response = await privateRefresh.delete(`/delete/${id}`, config);
       allProducts();
-    } else {
-      console.log("error");
+      
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
     }
+    
   };
   useEffect(() => {
     allProducts();
@@ -66,7 +76,14 @@ function Home() {
         </button>
       )}
       <div className="container">
-        <button className="hiddenBtn" onClick={showItem}></button>
+      {error!== "" ? <h1 style={{margin:"auto"}}>{error}</h1>:(loading?<div style={{margin:"auto"}}><Triangle
+  visible={true}
+  height="200"
+  width="200"
+  color="#B9DBF0"
+  ariaLabel="triangle-loading"
+  />
+  </div>:<><button className="hiddenBtn" onClick={showItem}></button>
         {productData
           .filter((product) => product.name.toLowerCase().includes(query)).slice(indexOfFirstItem, indexOfLastItem)
           .map((product, i) => (
@@ -142,7 +159,7 @@ function Home() {
               wgt15={product.weight14}
               wgt16={product.weight15}
             ></Card>
-          ))}
+          ))}</>)}
       </div>
       {productData.filter((product) => product.name.toLowerCase().includes(query)).length > itemsPerPage && (
   <div className="pagination">

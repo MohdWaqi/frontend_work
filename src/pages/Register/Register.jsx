@@ -39,7 +39,7 @@ function Register() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    userRef.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -105,7 +105,7 @@ function Register() {
   return (
     <>
       {success ? (
-        <div className="auth">
+        <div className="auth success">
           <h1>Success!</h1>
           <p>
             Do you want to?{" "}

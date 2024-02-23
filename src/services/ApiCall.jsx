@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "./helper";
 
-export const commonRequest = async (methods, url, body, header, check=false) => {
+export const commonRequest = async (methods, url, body, header, check) => {
   let config = {
     method: methods,
     url,
@@ -10,7 +10,7 @@ export const commonRequest = async (methods, url, body, header, check=false) => 
       : {
           "Content-Type": "application/json",
         },
-    withCredentials:check,    
+    withCredentials:check?check:false,    
     data: body,
   };
 

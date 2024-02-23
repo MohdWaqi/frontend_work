@@ -101,7 +101,6 @@ function Edit() {
   const setEditValues = (e) => {
     const { name, value } = e.target;
     setEditData({ ...editData, [name]: value });
-    console.log(editData)
   };
 
   useEffect(() => {

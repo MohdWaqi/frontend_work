@@ -259,7 +259,6 @@ function Add() {
       };
       try {
         const response = await privateRefresh.post("/add", data, config);
-        console.log(response);
         setAddData({
           ...addData,
           name: "",

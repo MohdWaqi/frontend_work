@@ -8,7 +8,6 @@ const RefreshRoute = () => {
     const refresh = async () => {
         try {
             const response = await refreshUser(true)
-            console.log(response)
             setAuth(prev =>{
                 return{...prev, accessToken: response.data.accessToken}
             })

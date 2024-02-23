@@ -56,7 +56,7 @@ function Home() {
       },
     };
     try {
-      const response = await privateRefresh.delete(`/delete/${id}`, config);
+     await privateRefresh.delete(`/delete/${id}`, config);
       allProducts();
       
     } catch (error) {
@@ -80,11 +80,11 @@ function Home() {
         <h2 style={{color: "#a8d9ec"}}>Call to Order</h2>
         <div className="callDetails">
         <div>
-        <img src={phone} />
+        <img src={phone} alt="phone"/>
         <h1 > +91 9897262934</h1>
         </div>
         <div>
-        <img src={phone} />
+        <img src={phone} alt="phone"/>
         <h1 > +91 8755075132</h1>
         </div>
         </div>

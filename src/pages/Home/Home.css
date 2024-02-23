@@ -26,7 +26,7 @@
   }
   h1 {
     margin-top: 20px;
-    color: #a8d9ec;
+    color: #61DF61;
     margin-bottom: 40px;
   }
   .app >:first-child{
@@ -61,8 +61,19 @@
     background-color: #0070ad;
     background-image: url("https://www.transparenttextures.com/patterns/swirl.png");
   }
+  .callDetails img{
+    width:50px
+  }
+  .callDetails{
+    display:flex;
+    justify-content:center;
+    gap:5%;
+  }
+  .callDetails h1{
+    color:#5DC45D
+  }
   
-  h1 + input {
+  .callDetails + input {
     width: 70%;
     height: 40px;
     text-align: left;
@@ -72,7 +83,7 @@
     border: none;
     font-size: 1.5rem;
   }
-  h1+input:focus{
+  .callDetails+input:focus{
     outline: none;
   }
   
@@ -221,6 +232,21 @@
       font-size: 2rem;
       padding-top:8%;
       margin-right:10%
+    }
+    .callDetails{
+      flex-direction: column;
+      margin-bottom:5%
+    }
+    .callDetails > div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .callDetails h1{
+      padding-top:5%;
+      margin: 0px;
+      line-height:80px
+
     }
     h1 {
       color: "red";

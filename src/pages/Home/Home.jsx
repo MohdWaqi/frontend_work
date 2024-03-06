@@ -31,6 +31,7 @@ function Home() {
 
   const handleSearch = (e) => {
     const searchQuery = e.target.value;
+    setCurrentPage(1)
     setLoading(true);
     debouncedSearch(searchQuery);
   };

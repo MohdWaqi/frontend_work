@@ -83,7 +83,6 @@ function Home() {
         <div>
         <img src={phone} alt="phone"/>
         <h1 > +91 9897262934</h1>
-        <h3>{import.meta.env.VITE_BACK_URL}</h3>
         </div>
         <div>
         <img src={phone} alt="phone"/>

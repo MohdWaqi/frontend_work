@@ -80,7 +80,7 @@ function Home() {
 
         <h2 style={{color: "#a8d9ec"}}>Call for Quote & Order</h2>
         <div className="callDetails">
-        <a href="tel:918755075132">
+        <a href="tel:8755075132">
         <div>
         <img src={phone} alt="phone"/>
         <h1 >+91-8755075132</h1>

@@ -185,7 +185,9 @@
   form > div > div > div > label {
     color: #b6d7f5;
   }
-  
+  a {
+    text-decoration: none;
+  }
   .card > div > div > button,
   .add {
     background-color: transparent;
@@ -246,7 +248,7 @@
       border-radius:40px;
       padding: 2% 6%;
     }
-    .callDetails > div{
+    .callDetails div{
       display: flex;
       justify-content: center;
       align-items: center;

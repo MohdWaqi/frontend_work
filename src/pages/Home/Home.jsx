@@ -78,15 +78,11 @@ function Home() {
       <div>
         <h1 className="home">Products</h1>
 
-        <h2 style={{color: "#a8d9ec"}}>Call to Order</h2>
+        <h2 style={{color: "#a8d9ec"}}>Call for Quote & Order</h2>
         <div className="callDetails">
         <div>
         <img src={phone} alt="phone"/>
-        <h1 > +91 9897262934</h1>
-        </div>
-        <div>
-        <img src={phone} alt="phone"/>
-        <h1 > +91 8755075132</h1>
+        <h1 >+91-8755075132</h1>
         </div>
         </div>
         <input

@@ -68,9 +68,16 @@
     display:flex;
     justify-content:center;
     gap:5%;
+    background: rgb(180,138,13);
+    background: radial-gradient(circle, rgba(251,190,9,1) 0%, rgba(249,216,72,1) 64%, rgba(241,255,0,1) 100%);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    width: max-content;
+    margin: 2% auto;
+    border-radius:100px;
+    padding: 0.5% 2%
   }
   .callDetails h1{
-    color:#5DC45D
+    color:#134B70;
   }
   
   .callDetails + input {
@@ -235,7 +242,9 @@
     }
     .callDetails{
       flex-direction: column;
-      margin-bottom:5%
+      margin-bottom:5%;
+      border-radius:40px;
+      padding: 2% 6%;
     }
     .callDetails > div{
       display: flex;

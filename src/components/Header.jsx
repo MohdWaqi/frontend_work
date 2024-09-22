@@ -38,9 +38,9 @@ const Header = () => {
           onClick={home}
           className="logo"
           src={logo}
-
           alt="Logo"
         ></img>
+        <h2 className="businessName">YK Handicrafts</h2>
       </div>
     </nav>
   );

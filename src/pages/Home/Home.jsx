@@ -40,7 +40,7 @@ function Home() {
     setLoading(true)
     try {
       const response = await getProducts(currentPage, itemsPerPage, query);
-      setTotalPages(response.data.totalPages)
+      setTotalPages(response.data.totalPages);
       setProductData(response.data.products);
       setLoading(false)
       

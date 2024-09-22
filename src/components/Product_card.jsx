@@ -1,12 +1,27 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContextProvider";
+import { Box, Button, Modal, Stack, Typography } from "@mui/material";
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: "50vw",
+  bgcolor: '#ffe7bb',
+  boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+  borderRadius: "20px",
+  p: 4,
+};
 
 function Card(props) {
   let visibility = props.state;
   const {isAuth} = useContext(AuthContext)
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div className="card">
       <div>
@@ -21,12 +36,28 @@ function Card(props) {
             </button>
 
             <button
-              onClick={() => {
-                props.delete(props.id);
-              }}
+              onClick={handleOpen}
             >
               <DeleteIcon></DeleteIcon>
             </button>
+            <Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box sx={style}>
+    <Typography id="modal-modal-title" variant="h6" component="h2">
+      Are you sure want to Delete?
+    </Typography>
+    <Stack direction="row" justifyContent={{xs:"space-around", md:"center"}} gap={{md:"5rem"}} marginTop="2rem">
+    <Button variant="contained" color="success" onClick={() => {
+                props.delete(props.id);
+              }}>Yes</Button>
+    <Button variant="contained" color="error" onClick={handleClose}>NO</Button>
+    </Stack>
+  </Box>
+</Modal>
           </div>
         )}
       </div>
